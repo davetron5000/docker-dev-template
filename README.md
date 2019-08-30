@@ -67,8 +67,8 @@ Docker image.
 ### Customization
 
 The scripts in `bin/` won't work unless they know a few bits of information that go into the `Dockerfile` and the
-build process.  These bits are stored in `bin/vars`. You can leave those as they are, but if you want to use
-different ports, change them and re-run `bin/build`.
+build process.  These bits are stored in `bin/vars`. You will most like want to change these depending on your
+project.  In particular, you should change the `TAG` if you intend to use this on multiple projects.
 
 Another avenue of customization is `Dockerfile.template`.  This is exactly like any `Dockerfile`, save for the few
 lines that are customized by `bin/build`, which should be obvious.  The most likely thing you will customize is
