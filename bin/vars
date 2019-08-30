@@ -1,0 +1,9 @@
+# Set this to the port in the Docker container you want exposed
+EXPOSE=8080
+# Set this to the port on your localhost you want to use to access
+# the EXPOSE port above
+LOCAL_PORT=9876
+# Set this to the tagname for the docker image
+TAG=devbox
+
+# vim: ft=bash

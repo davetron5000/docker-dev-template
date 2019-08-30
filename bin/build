@@ -1,0 +1,18 @@
+
+set -e
+
+. bin/vars
+
+echo "# This is generated, please edit"                       >  Dockerfile
+echo "# Dockerfile.template if you want to"                   >> Dockerfile
+echo "# make changes. Also note that some"                    >> Dockerfile
+echo "# values come from bin/vars, so check that out as well" >> Dockerfile
+
+cat Dockerfile.template | \
+    sed "s/^EXPOSE.*$/EXPOSE $EXPOSE/"               \
+    >> Dockerfile
+
+docker build -t $TAG ./
+
+echo "🌈 Your Docker image has been built tagged '${TAG}'"
+# vim: ft=bash

@@ -1,0 +1,25 @@
+. bin/vars
+
+set -e
+
+CMD=${*:-bash}
+if [ "$CMD" == "help" ] || [ "$CMD" == "--help" ] || [ "$CMD" == "-h" ]; then
+  echo "USAGE"
+  echo "  $0 [command]"
+  echo 
+  echo "  command is 'bash' by default"
+  echo
+  echo "EXAMPLES"
+  echo
+  echo "  bin/sh         # run bash in the Docker container"
+  echo "  bin/sh ls -ltr # run ls -ltr in the Docker container"
+else
+  echo "🎬 Starting your Docker container tagged '${TAG}'"
+  echo 
+  echo "🗄 /workdir inside the container IS this local directory you are in"
+  echo "🌎 localhost:$LOCAL_PORT will forward to this Docker container's port $EXPOSE"
+  echo
+  docker run --interactive -p $LOCAL_PORT:$EXPOSE --tty --mount type=bind,source=`pwd`/,destination=/workdir $TAG $CMD
+fi
+
+# vim: ft=bash
