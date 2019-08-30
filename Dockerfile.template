@@ -2,9 +2,10 @@ FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -q && apt-get install -qy \
-      man make git netcat
+      man make git netcat \
+      software-properties-common
 
-WORKDIR /workdir
+WORKDIR «value WORKDIR from bin/vars»
 VOLUME  /workdir
 EXPOSE «value EXPOSE from bin/vars»
 

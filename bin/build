@@ -9,7 +9,8 @@ echo "# make changes. Also note that some"                    >> Dockerfile
 echo "# values come from bin/vars, so check that out as well" >> Dockerfile
 
 cat Dockerfile.template | \
-    sed "s/^EXPOSE.*$/EXPOSE $EXPOSE/"               \
+    sed "s/^EXPOSE.*$/EXPOSE $EXPOSE/"   | \
+    sed "s:^WORKDIR.*$:WORKDIR $WORKDIR:"  \
     >> Dockerfile
 
 docker build -t $TAG ./

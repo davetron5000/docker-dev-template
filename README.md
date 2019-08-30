@@ -68,7 +68,8 @@ Docker image.
 
 The scripts in `bin/` won't work unless they know a few bits of information that go into the `Dockerfile` and the
 build process.  These bits are stored in `bin/vars`. You will most like want to change these depending on your
-project.  In particular, you should change the `TAG` if you intend to use this on multiple projects.
+project.  In particular, you should change the `TAG` if you intend to use this on multiple projects.  Also note
+that `WORKDIR` is customizable if you need to work in strange evironments like Golang.
 
 Another avenue of customization is `Dockerfile.template`.  This is exactly like any `Dockerfile`, save for the few
 lines that are customized by `bin/build`, which should be obvious.  The most likely thing you will customize is

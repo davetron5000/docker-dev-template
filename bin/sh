@@ -19,7 +19,7 @@ else
   echo "🗄 /workdir inside the container IS this local directory you are in"
   echo "🌎 localhost:$LOCAL_PORT will forward to this Docker container's port $EXPOSE"
   echo
-  docker run --interactive -p $LOCAL_PORT:$EXPOSE --tty --mount type=bind,source=`pwd`/,destination=/workdir $TAG $CMD
+  docker run --interactive -p $LOCAL_PORT:$EXPOSE --tty --mount type=bind,source=`pwd`/,destination=$WORKDIR $TAG $CMD
 fi
 
 # vim: ft=bash
