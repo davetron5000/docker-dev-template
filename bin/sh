@@ -19,7 +19,8 @@ else
   echo "🗄 /workdir inside the container IS this local directory you are in"
   echo "🌎 localhost:$LOCAL_PORT will forward to this Docker container's port $EXPOSE"
   echo
-  docker run --interactive -p $LOCAL_PORT:$EXPOSE --tty --mount type=bind,source=`pwd`/,destination=$WORKDIR $TAG $CMD
+  docker rm $TAG > /dev/null 2>&1 && echo "😵  Removed previous container (which is fine, no worries)" || echo "🤷‍♀️ No previous container (it's fine, just letting you know) 🤷‍♂️"
+  docker run --name $TAG --interactive -p $LOCAL_PORT:$EXPOSE --tty --mount type=bind,source=`pwd`/,destination=$WORKDIR $TAG $CMD
 fi
 
 # vim: ft=bash

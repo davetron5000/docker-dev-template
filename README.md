@@ -63,6 +63,7 @@ you from having to remember, write down, or look up the various incantations you
 * `bin/sh` will run commands inside a Docker container based on the image built by `bin/build`. By default it runs
 `bash`, but it will run whatever you ask.  Just remember that the thing you want to run has to be installed in the
 Docker image.
+* `bin/exec` will run a command inside the container you started by `bin/sh`
 
 ### Customization
 
