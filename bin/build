@@ -13,6 +13,13 @@ cat Dockerfile.template | \
     sed "s:^WORKDIR.*$:WORKDIR $WORKDIR:"  \
     >> Dockerfile
 
+cat docker-compose.yml.template | \
+  sed "s/TAG/$TAG/g" | \
+  sed "s/EXPOSE/$EXPOSE/g" | \
+  sed "s:VOLUME_SOURCE:`pwd`:g" | \
+  sed "s:WORKDIR:$WORKDIR:g" \
+  >> docker-compose.yml
+
 docker build -t $TAG ./
 
 echo "🌈 Your Docker image has been built tagged '${TAG}'"

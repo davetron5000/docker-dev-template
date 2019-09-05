@@ -11,8 +11,9 @@ system.
 1. Make sure you have Docker installed. Recommend you go to https://docs.docker.com, hover your mouse over “Get
    Docker” and choose your OS. Why there is no install page to link to directly I will never know.
 1. Clone this repo
-1. `bin/build` - this will build a Docker image
-1. `bin/sh` - this will start a container of that image and run `bash`
+1. `bin/build` - this will build a Docker image and generate a `docker-compose.yml` you can use to run things
+1. `bin/start` - A wrapper around `docker-compose up` that you can use to start up everything
+1. In another terminal, `bin/exec bash` - Connects to the docker container and starts an interactive `bash` shell
 1. `ls -l` - you should see your local directory from withing Docker
 1. `exit` - exits `bash` and shuts down the Docker container
 
@@ -56,14 +57,11 @@ to port 8080 inside the Docker container.  To run a server inside the Docker con
 
 ## What This Is
 
-If you look at `bin/sh` and `bin/build`, you will see that they perform various Docker commands. These are to save
-you from having to remember, write down, or look up the various incantations you will need.
+If you look at `bin/start` and `bin/exec`, you will see that they perform various Docker commands. These are to save you from having to remember, write down, or look up the various incantations you will need.
 
-* `bin/build` will (re)create your Docker image whenever you need, but keep in mind that `Dockerfile` is ephemeral. Make all your edits to `Dockerfile.template` or `bin/vars`.
-* `bin/sh` will run commands inside a Docker container based on the image built by `bin/build`. By default it runs
-`bash`, but it will run whatever you ask.  Just remember that the thing you want to run has to be installed in the
-Docker image.
-* `bin/exec` will run a command inside the container you started by `bin/sh`
+* `bin/build` Creates the necessary stuff from your configuration, which lives in `bin/vars`, `Dockerfile.template`, and `docker-compose.template`. It will also build a Docker image from the generated `Dockerfile`
+* `bin/start` will start up the docker image in a container as well as whatever else you have added to `docker-compose.yml`
+* `bin/exec` will run commands inside a Docker container based on the image built by `bin/build`. Just remember that the thing you want to run has to be installed in the Docker image.
 
 ### Customization
 
@@ -75,3 +73,5 @@ that `WORKDIR` is customizable if you need to work in strange evironments like G
 Another avenue of customization is `Dockerfile.template`.  This is exactly like any `Dockerfile`, save for the few
 lines that are customized by `bin/build`, which should be obvious.  The most likely thing you will customize is
 what software is installed.
+
+Finally, `docker-compose.yml` is used to add other services you want to run, such as databases.
