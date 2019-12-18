@@ -4,7 +4,7 @@ services:
     image: TAG
     entrypoint: "tail -f /dev/null"
     ports:
-      - "9876:EXPOSE"
+      - "LOCAL_PORT:EXPOSE"
     volumes:
       - type: bind
         source: "VOLUME_SOURCE"
